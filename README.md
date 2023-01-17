@@ -410,7 +410,7 @@ channel_no=%d&client_ip=%s&mch_id=%d&money=%s&notify_url=%s&out_order_no=%s&out_
 - 请求地址: /v1/api/pay/sign/query
 ### 签名字符串
 ```
-mch_id=%d&order_no=%s&timestamp=%d&key=%s
+channel_no=2&mch_id=%d&order_no=%s&timestamp=%d&key=%s
 ``` 
 ### 请求参数
 | 参数名    | 类型   | 是否必须 | 描述              | 示例值                           |
