@@ -40,14 +40,20 @@
 2. 后续通过 access_token 获取团队数据等步骤，也必须从服务器发起。
 3. 建议开发者使用中控服务器统一获取和刷新 access_token，其他业务逻辑服务器所使用的 access_token 均来自于该中控服务器，不应该各自去刷新，否则容易造成冲突，导致 access_token 覆盖而影响业务（多次刷新 access_token ，仅有最新一个有效）。
 4. access_token 有效期为2小时，建议中控服务器不仅需要内部定时主动刷新，还需要提供被动刷新 access_token 的接口，这样便于业务服务器在API调用获知 access_token 已超时的情况下，可以触发 access_token 的刷新流程。
-
 ##### 接口地址
 - 功能: 统一下单
-- 请求方式: GET / POST
+- 请求方式: POST
 - 请求地址: v1/api/pay/accesstoken
 
 ```bash
-GET https://open.supay.com/v1/api/pay/accesstoken?mch_id=10086&secret=4ZWQBPN5SFP7MW6EQHXSCGLMAZVJZT4I
+POST https://api.supay01.com/v1/api/pay/accesstoken
+```
+```json
+{
+	"mch_id": 10086,
+	"secret": "4ZWQBPN5SFP7MW6EQHXSCGLMAZVJZT4I",
+	"request_id": "@guid()"
+} 
 ```
 ##### 参数说明
 
@@ -55,6 +61,7 @@ GET https://open.supay.com/v1/api/pay/accesstoken?mch_id=10086&secret=4ZWQBPN5SF
 | ------ | ------ | :------: | -------------------- |
 | mch_id | int |    是    | 唯一性商户编号       |
 | secret | string |    是    | 颁发给商户的接口密钥 |
+| request_id| string | 否 | GUID, 可不传, 做幂等或者客户自己回调用 |
 
 
 ##### 返回说明
@@ -62,18 +69,21 @@ GET https://open.supay.com/v1/api/pay/accesstoken?mch_id=10086&secret=4ZWQBPN5SF
 | ---------- | ------ | ------------------------------------------- |
 | token      | string | 授权码                                      |
 | expires_in | int    | 有效时间，默认为2小时，过期后须重新发起授权 |
-
+| request_id| string | GUID|
 
 ```json
 {
-    "code": 0,
-    "msg": "OK",
-    "data": {
-        "token": "ACCESS_TOKEN",
-        "expires_in": 7200
-    }
+	"code": 0,
+	"msg": "",
+	"error": "",
+	"data": {
+		"token": "B7C5F08637FB4E8BADDAFF698187AE5B",
+		"expires_in": 43200
+	},
+	"request_id": "db7EeF4C-540f-e5b7-DB06-0cebfE745dA6",
+	"req": null
 }
-```
+
 ### 签名规则
 ```
 该方式用于直接采用MD5签名的方式
