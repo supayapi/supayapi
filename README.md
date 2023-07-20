@@ -690,6 +690,7 @@ mch_id=%d&timestamp=%d&key=%s
 | ------------ | ------ | ----------------------------------- | ------------------- |
 | mch_id       | int    | 商户编号                            | 1000010             |
 | money        | string | 订单金额                            | 1000.00             |
+| real_money   | string | 实际金额                            | 1000.00             |
 | notify_time  | string | 通知时间                            | 2006-01-02 15:04:05 |
 | order_no     | string | 平台订单号                          | 2015042321001004720 |
 | out_order_no | string | 商户订单号                          | CZX00901239888173   |
@@ -699,7 +700,7 @@ mch_id=%d&timestamp=%d&key=%s
 
 ## 签名字符串
 ```
-mch_id=%d&money=%s&notify_time=%s&order_no=%s&out_order_no=%s&param=%s&state=%d&key=%s
+mch_id=%d&money=%s&notify_time=%s&order_no=%s&out_order_no=%s&param=%s&real_money=%s&state=%d&key=%s
 ```
 
 ## 代付
