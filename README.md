@@ -718,6 +718,7 @@ address=%d&bank_name=%s&bank_no=%d&card_username=%s&client_ip=%s&level=%s&memo=%
 | 参数名           | 类型   | 是否必须 | 描述         | 示例值                    |
 |---------------| ------ | :------: |------------|------------------------|
 | address       | string |    是    | 地址         | 新华大街67号                |
+| mch_id       | int   |    是 | 商户编号           | 1000010             |
 | bank_name     | string |    是    | 银行卡名称      | 工商银行                   |
 | bank_no       | string |    是    | 银行卡号       | 62148301****3544       |
 | card_username | string |    是  | 银行卡用户名     | 张三                     |
